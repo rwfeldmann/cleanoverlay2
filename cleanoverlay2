@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+/usr/bin/docker system prune -f
+
+EXITVALUE=$?
+
+if [ $EXITVALUE != 0 ]; then
+    /usr/bin/logger -t cleanoverlay2 "ALERT exited abnormally with [$EXITVALUE]"
+else
+    /usr/bin/logger -t cleanoverlay2 "INFO ran successfully with [$EXITVALUE]"
+fi
+
+exit $EXITVALUE
